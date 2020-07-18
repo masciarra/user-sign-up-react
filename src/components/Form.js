@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './Form.css'
+// import './Form.css'
 
 
 class Form extends Component {
@@ -12,25 +12,8 @@ class Form extends Component {
             lastName: '',
             dateOfBirth: '',
             username: '',
-            password: '',
+            password: ''
         }
-    }
-
-
-    submitHandler(event){
-        // event.preventDefault();
-        // const data = new FormData(event.target);
-        // let s = data.get('firstName')
-        // this.setState({
-        //     firstName: s,
-        //     lastName: data.get('lastName'),
-        //     dateOfBirth: data.get('dateOfBirth'),
-        //     username: data.get('username'),
-        //     password: data.get('password')
-        // });
-        alert(`${this.state.firstName} ${this.state.lastName} ${this.state.password}`);
-        event.preventDefault();
-        // alert(this.state.firstName);
     }
 
     firstNameChangeHandler = (event) => {
@@ -67,6 +50,13 @@ class Form extends Component {
         })
     }
     
+    submitHandler(event){
+        // alert('test');
+        // alert(`${this.state.firstName}`)
+        alert(this.state.firstName)
+        event.preventDefault()
+    }
+
     render() {
         return (
             <div>
@@ -75,29 +65,26 @@ class Form extends Component {
                 <form className = 'form' onSubmit = {this.submitHandler}>
                     <div>
                         <label className = 'label'>First Name</label>
-                        <input type='text' name = 'firstName' value={this.state.firstName} onChange = {this.firstNameChangeHandler}/>
+                        <input type='text' value={this.state.firstName} onChange = {this.firstNameChangeHandler}/>
                     </div>
                     <div>
                         <label className = 'label'>Last Name</label>
-                        <input type='text' name = 'lastName' value={this.state.lastName} onChange = {this.lastNameChangeHandler}/>
+                        <input type='text' value={this.state.lastName} onChange = {this.lastNameChangeHandler}/>
                     </div>
                     <div>
                         <label className = 'label'>Date of Birth</label>
-                        <input type='text' name = 'dateOfBirth' value={this.state.dateOfBirth} onChange = {this.dateOfBirthChangeHandler}/>
+                        <input type='text' value={this.state.dateOfBirth} onChange = {this.dateOfBirthChangeHandler}/>
                     </div>
                     <div>
                         <label className = 'label'>Username</label>
-                        <input type='text' name = 'username' value={this.state.username} onChange = {this.usernameChangeHandler}/>
+                        <input type='text' value={this.state.username} onChange = {this.usernameChangeHandler}/>
                     </div>
                     <div>
                         <label className = 'label'>Password</label>
-                        <input type='text' name = 'password' value={this.state.password} onChange = {this.passwordChangeHandler}/>
+                        <input type='text' value={this.state.password} onChange = {this.passwordChangeHandler}/>
                     </div>
-                    <p ></p>
-                    <button>Submit</button>
-                    
+                    <button type="submit">Submit</button>
                 </form>
-                {/* <button onClick={this.submitHandler}>Submit</button> */}
             </div>
         )
     }
