@@ -19,8 +19,6 @@ button {
 .dobexample{
     font-style: italic;
     position: relative;
-    left: -715px;
+    left: 170px;
     bottom: 130px;
-    float: right;
-
 }

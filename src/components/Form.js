@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import './Form.css'
+import axios from 'axios'
 
 
 class Form extends Component {
@@ -16,43 +17,24 @@ class Form extends Component {
         }
     }
 
-    firstNameChangeHandler = (event) => {
-        this.setState({
-            firstName: event.target.value
-        })
-    }
-
-    lastNameChangeHandler = (event) => {
-        this.setState({
-           lastName: event.target.value
-            
-        })
-    }
-
-    dateOfBirthChangeHandler = (event) => {
-        this.setState({
-           dateOfBirth: event.target.value
-            
-        })
-    }
-
-    usernameChangeHandler = (event) => {
-        this.setState({
-           username: event.target.value
-            
-        })
-    }
-
-    passwordChangeHandler = (event) => {
-        this.setState({
-           password : event.target.value
-            
-        })
+    changeHandler = (e) => {
+        this.setState({[e.target.name]: e.target.value});
     }
     
-    submitHandler = (event) => {
-        alert(`${this.state.firstName} ${this.state.lastName} ${this.state.dateOfBirth} ${this.state.username} ${this.state.password}`)
-        event.preventDefault()
+    submitHandler = (e) => {
+        // alert(`${this.state.firstName} ${this.state.lastName} ${this.state.dateOfBirth} ${this.state.username} ${this.state.password}`)
+
+        e.preventDefault()
+        console.log(this.state)
+
+        axios
+            .post('https://jsonplaceholder.typicode.com/posts', this.state)
+            .then(response => {
+                console.log(response)
+            })
+            .catch(error => {
+            console.log(error)
+            })
     }
 
     render() {
@@ -64,23 +46,48 @@ class Form extends Component {
                     <form className = 'form' onSubmit = {this.submitHandler}>
                         <div>
                             <label>First Name</label>
-                            <input type='text' value={this.state.firstName} onChange = {this.firstNameChangeHandler}/>
+                            <input 
+                                type='text' 
+                                value={this.state.firstName} 
+                                onChange = {this.changeHandler}
+                                name='firstName'
+                            />
                         </div>
                         <div>
                             <label>Last Name</label>
-                            <input type='text' value={this.state.lastName} onChange = {this.lastNameChangeHandler}/>
+                            <input 
+                                type='text' 
+                                value={this.state.lastName} 
+                                onChange = {this.changeHandler}
+                                name='lastName'
+                            />
                         </div>
                         <div>
                             <label>Date of Birth</label>
-                            <input type='text' value={this.state.dateOfBirth} onChange = {this.dateOfBirthChangeHandler}/>
+                            <input 
+                                type='text' 
+                                value={this.state.dateOfBirth} 
+                                onChange = {this.changeHandler}
+                                name='dateOfBirth'
+                            />
                         </div>
                         <div>
                             <label>Username</label>
-                            <input type='text' value={this.state.username} onChange = {this.usernameChangeHandler}/>
+                            <input 
+                                type='text' 
+                                value={this.state.username} 
+                                onChange = {this.changeHandler}
+                                name='username'
+                            />
                         </div>
                         <div>
                             <label>Password</label>
-                            <input type='text' value={this.state.password} onChange = {this.passwordChangeHandler}/>
+                            <input 
+                                type='text' 
+                                value={this.state.password} 
+                                onChange = {this.changeHandler}
+                                name='password'
+                            />
                         </div>
                         <button type="submit">Submit</button>
                     </form>
