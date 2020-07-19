@@ -1,9 +1,26 @@
-/* .label{
-    /* position: relative; */
-    /* left : -20px; */
-    display: grid;
-    grid-template-columns: max-content max-content;
-    grid-gap:5px;
+input {
+    position: relative;
+    left: -65px;
+}
+label{
+    position: relative;
+    display: inline-block;
+    width: 140px;
     text-align: right;
-    
-} */
+    left: -70px;
+    padding: .50em;
+}
+
+button {
+    position: relative;
+    bottom: -10px;    
+}
+
+.dobexample{
+    font-style: italic;
+    position: relative;
+    left: -715px;
+    bottom: 130px;
+    float: right;
+
+}
