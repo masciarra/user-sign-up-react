@@ -18,27 +18,27 @@ class Form extends Component {
 
     firstNameChangeHandler = (event) => {
         this.setState({
-            firstName : event.target.value
+            firstName: event.target.value
         })
     }
 
     lastNameChangeHandler = (event) => {
         this.setState({
-           lastName : event.target.value
+           lastName: event.target.value
             
         })
     }
 
     dateOfBirthChangeHandler = (event) => {
         this.setState({
-           dateOfBirth : event.target.value
+           dateOfBirth: event.target.value
             
         })
     }
 
     usernameChangeHandler = (event) => {
         this.setState({
-           username : event.target.value
+           username: event.target.value
             
         })
     }
@@ -50,10 +50,8 @@ class Form extends Component {
         })
     }
     
-    submitHandler(event){
-        // alert('test');
-        // alert(`${this.state.firstName}`)
-        alert(this.state.firstName)
+    submitHandler = (event) => {
+        alert(`${this.state.firstName} ${this.state.lastName} ${this.state.dateOfBirth} ${this.state.username} ${this.state.password}`)
         event.preventDefault()
     }
 
