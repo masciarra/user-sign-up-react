@@ -24,17 +24,17 @@ class Form extends Component {
     submitHandler = (e) => {
         // alert(`${this.state.firstName} ${this.state.lastName} ${this.state.dateOfBirth} ${this.state.username} ${this.state.password}`)
 
-        e.preventDefault()
-        console.log(this.state)
-
+        e.preventDefault();
+        console.log(this.state);
+        // https://jsonplaceholder.typicode.com/posts
         axios
-            .post('https://jsonplaceholder.typicode.com/posts', this.state)
+            .post('http://127.0.0.1:3002/api/posts', this.state)
             .then(response => {
                 console.log(response)
             })
             .catch(error => {
             console.log(error)
-            })
+            });
     }
 
     render() {
@@ -42,7 +42,7 @@ class Form extends Component {
             <div>
                 <div>
                     <h1>Hello, welcome to our platform.</h1>
-                    <h2>Please proceed with sign up</h2>
+                    <h2>Please proceed with sign up.</h2>
                     <form className = 'form' onSubmit = {this.submitHandler}>
                         <div>
                             <label>First Name</label>
