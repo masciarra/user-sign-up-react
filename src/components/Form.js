@@ -7,34 +7,49 @@ class Form extends Component {
     
     constructor(props){
         super(props)
-        // this.submitHandler = this.submitHandler.bind(this);
         this.state = {
-            firstName: '',
-            lastName: '',
-            dateOfBirth: '',
-            username: '',
-            password: ''
+            formFields: {
+                firstName: '',
+                lastName: '',
+                dateOfBirth: '',
+                username: '',
+                password: ''
+            }
         }
     }
 
     changeHandler = (e) => {
-        this.setState({[e.target.name]: e.target.value});
+        // this.setState({formFields[e.target.name]: e.target.value});
+        let formFields = {...this.state.formFields};
+        formFields[e.target.name] = e.target.value;
+        this.setState({
+         formFields
+        });
     }
     
     submitHandler = (e) => {
         // alert(`${this.state.firstName} ${this.state.lastName} ${this.state.dateOfBirth} ${this.state.username} ${this.state.password}`)
-
+        // http://127.0.0.1:3002/api/posts
+        // http://httpbin.org/post
         e.preventDefault();
         console.log(this.state);
         // https://jsonplaceholder.typicode.com/posts
-        axios
-            .post('http://127.0.0.1:3002/api/posts', this.state)
-            .then(response => {
-                console.log(response)
-            })
-            .catch(error => {
-            console.log(error)
-            });
+        // axios
+        //     .post('http://127.0.0.1:3002/api/posts', this.state)
+        //     .then(response => {
+        //         console.log(response)
+        //     })
+        //     .catch(error => {
+        //     console.log(error)
+        //     });
+        axios({
+            method: 'post',
+            url: 'http://127.0.0.1:3002/api/posts',
+            data: this.state,
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        })
     }
 
     render() {

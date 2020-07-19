@@ -1,8 +1,12 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 //const fs = require('fs');
 const mysql = require('mysql');
 var cors = require('cors');
+
+
 const app = express();
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(cors());
 
@@ -60,7 +64,9 @@ app.set('port', (process.env.PORT || 3002));
 
 app.post('/api/posts', (req, res) => {
     console.log('got here');
-
+    // const body1 = req.body.Body;
+    console.log(req);
+    res.sendStatus(200)
 
 
 //   const firstName = req.query.firstName;
