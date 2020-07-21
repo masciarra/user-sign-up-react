@@ -18,7 +18,7 @@ button {
 
 .dobexample{
     font-style: italic;
-    position: relative;
-    left: 170px;
-    bottom: 130px;
+    margin-left: 360px;
+    margin-top: -115px;
+
 }

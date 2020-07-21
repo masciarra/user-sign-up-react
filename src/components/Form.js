@@ -45,7 +45,7 @@ class Form extends Component {
         axios({
             method: 'post',
             url: 'http://127.0.0.1:3002/api/posts',
-            data: this.state,
+            data: this.state.formFields,
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
@@ -80,7 +80,7 @@ class Form extends Component {
                         <div>
                             <label>Date of Birth</label>
                             <input 
-                                type='text' 
+                                type='date' 
                                 value={this.state.dateOfBirth} 
                                 onChange = {this.changeHandler}
                                 name='dateOfBirth'

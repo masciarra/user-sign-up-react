@@ -13,6 +13,7 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
+    "string": "^3.3.3",
     "websocket-extensions": "^0.1.4"
   },
   "scripts": {
