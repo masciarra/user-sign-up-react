@@ -32,12 +32,12 @@ var con = mysql.createConnection({
 
 con.connect(function (err) {
   if (err) throw err;
-  con.query("SELECT * FROM formdata", function (err, result, fields) {
-    if (err) throw err;
-    var string = JSON.stringify(result);
-    var json = JSON.parse(string);
-    console.log(json);
-  });
+  // con.query("SELECT * FROM formdata", function (err, result, fields) {
+  //   if (err) throw err;
+  //   var string = JSON.stringify(result);
+  //   var json = JSON.parse(string);
+  //   console.log(json);
+  // });
 });   //move this
 
 // app.use('/api/auth', function(req, res) {
@@ -65,17 +65,19 @@ app.post('/api/posts', (req, res) => {
   console.log('got here');
   const body = Object.keys(req.body)
   const json = JSON.parse(body)
+  console.log("preformat: " + json.dateOfBirth);
+  // const formattedDate = json.dateOfBirth.toISOString();
+  // console.log("format: " + formattedDate);
 
 
   const queryString = "INSERT INTO `userdata`.`formdata` (`first_name`, `last_name`, `date_of_birth`, `username`, `password`) VALUES ('" + json.firstName + "', '" + json.lastName + "', '" + json.dateOfBirth + "', '" + json.username + "', '" + json.password + "');";
-
+  console.log("queryString" + queryString);
   con.query(queryString, function (err, result, fields) {
-    if (err) throw err;
+    // if (err) throw err;
     console.log(result);
 
   });
-// console.log(queryString1);
-res.sendStatus(200);
+  res.sendStatus(200);
 
 
 
@@ -93,6 +95,20 @@ res.sendStatus(200);
   //       });
 
 });
+
+app.get('/api/gets', (req, res) => {
+  console.log("got here get!");
+
+  const queryString = 'SELECT * FROM formdata';
+
+  con.query(queryString, function (err, result, fields) {
+    if (err) throw err;
+    // console.log(result);
+    res.send(result);
+
+  });
+
+})
 
 app.listen(app.get('port'), () => {
   console.log(`Find the server at: http://localhost:${app.get('port')}/`); // eslint-disable-line no-console

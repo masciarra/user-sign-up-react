@@ -2,9 +2,12 @@ import React, { Component } from 'react'
 import './Form.css'
 import axios from 'axios'
 
+var retrieveData = null;
+
 
 class Form extends Component {
     
+
     constructor(props){
         super(props)
         this.state = {
@@ -19,9 +22,15 @@ class Form extends Component {
     }
 
     changeHandler = (e) => {
-        // this.setState({formFields[e.target.name]: e.target.value});
         let formFields = {...this.state.formFields};
-        formFields[e.target.name] = e.target.value;
+        if(e.target.name == 'dateOfBirth'){
+            const dateParts = e.target.value.split("/");
+            const date = dateParts[2] + '-' + dateParts[0] + '-' + dateParts[1];
+            formFields[e.target.name] = date;
+            console.log('date baby!:' + date);
+        }else{
+            formFields[e.target.name] = e.target.value;
+        }
         this.setState({
          formFields
         });
@@ -32,7 +41,7 @@ class Form extends Component {
         // http://127.0.0.1:3002/api/posts
         // http://httpbin.org/post
         e.preventDefault();
-        console.log(this.state);
+        // console.log(this.state);
         // https://jsonplaceholder.typicode.com/posts
         // axios
         //     .post('http://127.0.0.1:3002/api/posts', this.state)
@@ -42,6 +51,10 @@ class Form extends Component {
         //     .catch(error => {
         //     console.log(error)
         //     });
+        
+        console.log("state before submitting: " + this.state.formFields.dateOfBirth);
+
+
         axios({
             method: 'post',
             url: 'http://127.0.0.1:3002/api/posts',
@@ -50,6 +63,14 @@ class Form extends Component {
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
         })
+
+        axios({
+            method: 'get',
+            url: 'http://127.0.0.1:3002/api/gets',
+            data: retrieveData,
+        })
+
+        console.log(retrieveData);
     }
 
     render() {
@@ -80,7 +101,7 @@ class Form extends Component {
                         <div>
                             <label>Date of Birth</label>
                             <input 
-                                type='date' 
+                                // type='date' 
                                 value={this.state.dateOfBirth} 
                                 onChange = {this.changeHandler}
                                 name='dateOfBirth'
@@ -108,7 +129,7 @@ class Form extends Component {
                     </form>
                 </div>
                 <div>
-                    <p className='dobexample'>example: 6/31/2020</p>
+                    <p className='dobexample'>example: 6/30/2020</p>
                 </div>
             </div>
         )
