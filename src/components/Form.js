@@ -27,7 +27,6 @@ class Form extends Component {
             const dateParts = e.target.value.split("/");
             const date = dateParts[2] + '-' + dateParts[0] + '-' + dateParts[1];
             formFields[e.target.name] = date;
-            console.log('date baby!:' + date);
         }else{
             formFields[e.target.name] = e.target.value;
         }
@@ -37,23 +36,7 @@ class Form extends Component {
     }
     
     submitHandler = (e) => {
-        // alert(`${this.state.firstName} ${this.state.lastName} ${this.state.dateOfBirth} ${this.state.username} ${this.state.password}`)
-        // http://127.0.0.1:3002/api/posts
-        // http://httpbin.org/post
         e.preventDefault();
-        // console.log(this.state);
-        // https://jsonplaceholder.typicode.com/posts
-        // axios
-        //     .post('http://127.0.0.1:3002/api/posts', this.state)
-        //     .then(response => {
-        //         console.log(response)
-        //     })
-        //     .catch(error => {
-        //     console.log(error)
-        //     });
-        
-        console.log("state before submitting: " + this.state.formFields.dateOfBirth);
-
 
         axios({
             method: 'post',
