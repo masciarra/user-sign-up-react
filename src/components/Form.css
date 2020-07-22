@@ -1,9 +1,7 @@
 input {
-    position: relative;
-    left: -65px;
+    margin-right: 100px;
 }
 label{
-    position: relative;
     display: inline-block;
     width: 140px;
     text-align: right;
@@ -12,13 +10,12 @@ label{
 }
 
 button {
-    position: relative;
-    bottom: -10px;    
+    margin-top: 10px;
+    margin-left: 20px;
 }
 
 .dobexample{
     font-style: italic;
-    margin-left: 360px;
-    margin-top: -115px;
-
+    margin-left: 380px;
+    margin-top: -125px;
 }

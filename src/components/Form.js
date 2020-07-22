@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import './Form.css'
 import axios from 'axios'
+import Moment from 'react-moment';
+import moment from 'moment';
 
 var retrieveData = null;
 
@@ -23,7 +25,7 @@ class Form extends Component {
 
     changeHandler = (e) => {
         let formFields = {...this.state.formFields};
-        if(e.target.name == 'dateOfBirth'){
+        if(e.target.name === 'dateOfBirth'){
             const dateParts = e.target.value.split("/");
             const date = dateParts[2] + '-' + dateParts[0] + '-' + dateParts[1];
             formFields[e.target.name] = date;
@@ -37,6 +39,11 @@ class Form extends Component {
     
     submitHandler = (e) => {
         e.preventDefault();
+
+        // var date = new Date(this.state.formFields.dateOfBirth);
+        // const dateString = date.toISOString();
+        // console.log(dateString.substring(0,10));
+        
 
         axios({
             method: 'post',
