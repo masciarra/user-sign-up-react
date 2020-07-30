@@ -1,4 +1,4 @@
-input {
+/* input {
     margin-right: 100px;
 }
 label{
@@ -7,15 +7,37 @@ label{
     text-align: right;
     left: -70px;
     padding: .50em;
-}
+} */
 
-button {
+/* button {
     margin-top: 10px;
     margin-left: 20px;
+} */
+
+
+
+input, label {
+    display: block;
+    margin: 7px;
+}
+
+input {
+    margin-left: 270px;
+}
+
+.formBox{
+    background-color: #18c3ef;
+    width: 700px;
+    height: 500px;
+    margin: 2rem auto;
+}
+form {
+    padding-top: 2px;
 }
 
 .dobexample{
     font-style: italic;
-    margin-left: 380px;
-    margin-top: -125px;
+    /* margin-bottom: 1000px; */
+    margin-left: 320px;
+    margin-top: -155px;
 }

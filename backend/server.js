@@ -65,12 +65,8 @@ app.post('/api/posts', (req, res) => {
   console.log('got here');
   const body = Object.keys(req.body)
   const json = JSON.parse(body)
-  console.log("preformat: " + json.dateOfBirth);
-  // const formattedDate = json.dateOfBirth.toISOString();
-  // console.log("format: " + formattedDate);
 
-
-  const queryString = "INSERT INTO `userdata`.`formdata` (`first_name`, `last_name`, `date_of_birth`, `username`, `password`) VALUES ('" + json.firstName + "', '" + json.lastName + "', '" + json.dateOfBirth + "', '" + json.username + "', '" + json.password + "');";
+  const queryString = "INSERT INTO `userdata`.`formdata` (`first_name`, `last_name`, `email`, `date_of_birth`, `username`, `password`) VALUES ('" + json.firstName + "', '" + json.lastName + "', '" + json.email + "', '" + json.dateOfBirth + "', '" + json.username + "', '" + json.password + "');";
   console.log("queryString" + queryString);
   con.query(queryString, function (err, result, fields) {
     // if (err) throw err;
