@@ -23,22 +23,100 @@ app.set('port', (process.env.PORT || 3002));
 //   });
 // }
 
-var con = mysql.createConnection({
+let dbConfig = {
   host: "127.0.0.1",
   user: "root",
   password: "password",
   database: "userdata"
-});
+};
 
-con.connect(function (err) {
-  if (err) throw err;
-  // con.query("SELECT * FROM formdata", function (err, result, fields) {
-  //   if (err) throw err;
-  //   var string = JSON.stringify(result);
-  //   var json = JSON.parse(string);
-  //   console.log(json);
+// var con = mysql.createConnection({
+//   host: "127.0.0.1",
+//   user: "root",
+//   password: "password",
+//   database: "userdata"
+// });
+
+function connectToDatabase() {
+  console.log('Trying to connect to the database');
+  // let _conn = mysql.createConnection(dbConfig);
+
+  let pool = mysql.createPool(dbConfig);
+
+  console.log('test');
+  pool.getConnection(function (err, conn) {
+    if (!err){
+      // conn.query("SELECT * FROM formdata", function (err, result, fields) {
+      //   console.log(result);
+      // })
+    }
+  })
+
+  return pool;
+
+
+  
+  // pool.on('connection', function (_conn) {
+  //   if (_conn) {
+  //     console.log("made it");
+  //     const queryString = "SELECT * FROM formdata";
+  //     con.query(queryString, function (err, result, fields) {
+  //       // if (err) throw err;
+  //       console.log(result);
+  //     });
+  //   }
   // });
-});   //move this
+
+  // _conn.connect((err) => {
+  //   if (err) {
+  //     console.log('Error connecting to the database');
+  //     setTimeout(connectToDatabase, 3000);
+  //   }
+  //   else {
+  //     console.log('Connected to the database via threadId : ' + _conn.threadId);
+  //     // const queryString = "SELECT * FROM formdata";
+  //     // _conn.query(queryString, function (err, result, fields) {
+  //     //   // if (err) throw err;
+  //     //   console.log(result);
+
+  //     // });
+  //     return _conn;
+  //   }
+  // });
+
+  // _conn.on('error', (err) => {
+  //   console.log.error('Error connecting to the database');
+  //   setTimeout(connectToDatabase, 3000);
+  // });
+}
+
+var con = connectToDatabase();
+
+
+
+
+// const queryString = "SELECT * FROM formdata";
+// con.query(queryString, function (err, result, fields) {
+//   // if (err) throw err;
+//   console.log(result);
+
+// });
+
+// export default con;
+
+// var con = mysql.createConnection(dbConfig);
+
+
+
+// con.connect(function (err) {
+//   if (err) throw err;
+//   // con.query("SELECT * FROM formdata", function (err, result, fields) {
+//   //   if (err) throw err;
+//   //   var string = JSON.stringify(result);
+//   //   var json = JSON.parse(string);
+//   //   console.log(json);
+//   // });
+// });   //move this
 
 // app.use('/api/auth', function(req, res) {
 //   const pass = req.query.pass;
